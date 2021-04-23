@@ -1,18 +1,18 @@
-package com.lambdaschool.shoppingcart;
+package school.lambda.shoppingcartdeployed;
 
-import com.lambdaschool.shoppingcart.models.Product;
-import com.lambdaschool.shoppingcart.models.Role;
-import com.lambdaschool.shoppingcart.models.User;
-import com.lambdaschool.shoppingcart.models.UserRoles;
-import com.lambdaschool.shoppingcart.services.CartItemService;
-import com.lambdaschool.shoppingcart.services.ProductService;
-import com.lambdaschool.shoppingcart.services.RoleService;
-import com.lambdaschool.shoppingcart.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import school.lambda.shoppingcartdeployed.models.Product;
+import school.lambda.shoppingcartdeployed.models.Role;
+import school.lambda.shoppingcartdeployed.models.User;
+import school.lambda.shoppingcartdeployed.models.UserRoles;
+import school.lambda.shoppingcartdeployed.services.CartItemService;
+import school.lambda.shoppingcartdeployed.services.ProductService;
+import school.lambda.shoppingcartdeployed.services.RoleService;
+import school.lambda.shoppingcartdeployed.services.UserService;
 
 /**
  * SeedData puts both known and random data into the database. It implements CommandLineRunner.
@@ -22,14 +22,13 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 @ConditionalOnProperty(
-    prefix = "command.line.runner",
-    value = "enabled",
-    havingValue = "true",
-    matchIfMissing = true)
-@Component
+        prefix = "command.line.runner",
+        value = "enabled",
+        havingValue = "true",
+        matchIfMissing = true)
+//@Component
 public class SeedData
-    implements CommandLineRunner
-{
+        implements CommandLineRunner {
     /**
      * Connects the Role Service to this process
      */
@@ -56,8 +55,7 @@ public class SeedData
     @Transactional
     @Override
     public void run(String[] args) throws
-                                   Exception
-    {
+            Exception {
         // Adding users
 
         userService.deleteAll();
@@ -75,35 +73,34 @@ public class SeedData
         r2 = roleService.save(r2);
 
         User u1 = new User("barnbarn",
-            "LambdaLlama",
-            "barnbarn@host.local",
-            "added via seed data");
+                "LambdaLlama",
+                "barnbarn@host.local",
+                "added via seed data");
         u1.getRoles()
-            .add(new UserRoles(u1,
-                r1));
+                .add(new UserRoles(u1,
+                        r1));
         u1.getRoles()
-            .add(new UserRoles(u1,
-                r2));
-
+                .add(new UserRoles(u1,
+                        r2));
         u1 = userService.save(u1);
 
         User u2 = new User("cinnamon",
-            "LambdaLlama",
-            "cinnamon@host.local",
-            "added via seed data");
+                "LambdaLlama",
+                "cinnamon@host.local",
+                "added via seed data");
         u2.getRoles()
-            .add(new UserRoles(u2,
-                r2));
+                .add(new UserRoles(u2,
+                        r2));
 
         u2 = userService.save(u2);
 
         User u3 = new User("stumps",
-            "LambdaLlama",
-            "stumps@host.local",
-            "added via seed data");
+                "LambdaLlama",
+                "stumps@host.local",
+                "added via seed data");
         u3.getRoles()
-            .add(new UserRoles(u3,
-                r2));
+                .add(new UserRoles(u3,
+                        r2));
 
         u3 = userService.save(u3);
 
@@ -132,39 +129,34 @@ public class SeedData
         p3 = productService.save(p3);
 
         // Creating Carts
-        for (int i = 0; i < 4; i++)
-        {
+        for (int i = 0; i < 4; i++) {
             cartItemService.addToCart(u1.getUserid(),
-                p1.getProductid(),
-                "added via seed data");
+                    p1.getProductid(),
+                    "added via seed data");
         }
 
-        for (int i = 0; i < 3; i++)
-        {
+        for (int i = 0; i < 3; i++) {
             cartItemService.addToCart(u1.getUserid(),
-                p2.getProductid(),
-                "added via seed data");
+                    p2.getProductid(),
+                    "added via seed data");
         }
 
-        for (int i = 0; i < 2; i++)
-        {
+        for (int i = 0; i < 2; i++) {
             cartItemService.addToCart(u1.getUserid(),
-                p3.getProductid(),
-                "added via seed data");
+                    p3.getProductid(),
+                    "added via seed data");
         }
 
-        for (int i = 0; i < 1; i++)
-        {
+        for (int i = 0; i < 1; i++) {
             cartItemService.addToCart(u2.getUserid(),
-                p3.getProductid(),
-                "added via seed data");
+                    p3.getProductid(),
+                    "added via seed data");
         }
 
-        for (int i = 0; i < 17; i++)
-        {
+        for (int i = 0; i < 17; i++) {
             cartItemService.addToCart(u3.getUserid(),
-                p3.getProductid(),
-                "added via seed data");
+                    p3.getProductid(),
+                    "added via seed data");
         }
 
     }
