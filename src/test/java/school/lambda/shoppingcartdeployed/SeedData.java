@@ -1,5 +1,10 @@
 package school.lambda.shoppingcartdeployed;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import school.lambda.shoppingcartdeployed.models.Product;
 import school.lambda.shoppingcartdeployed.models.Role;
 import school.lambda.shoppingcartdeployed.models.User;
@@ -8,11 +13,6 @@ import school.lambda.shoppingcartdeployed.services.CartItemService;
 import school.lambda.shoppingcartdeployed.services.ProductService;
 import school.lambda.shoppingcartdeployed.services.RoleService;
 import school.lambda.shoppingcartdeployed.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * SeedData puts both known and random data into the database. It implements CommandLineRunner.
@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
         value = "enabled",
         havingValue = "true",
         matchIfMissing = true)
-@Component
+//@Component
 public class SeedData
         implements CommandLineRunner {
     /**

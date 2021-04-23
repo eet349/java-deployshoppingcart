@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 @Configuration
 public class DataSourceConfig {
     @Value("${local.run.db:h2}")
-    private String dbValue;
+    private String  dbValue;
 
     @Value("${spring.datasource.url:}")
     private String dbURL;
@@ -20,22 +20,24 @@ public class DataSourceConfig {
     @Bean
     public DataSource dataSource() {
         if(dbValue.equalsIgnoreCase("POSTGRESQL")) {
-            //  Assume Heroku
+            // Assume its heroku
+            System.out.println(dbURL);
             HikariConfig config = new HikariConfig();
             config.setDriverClassName("org.postgresql.Driver");
             config.setJdbcUrl(dbURL);
             return new HikariDataSource(config);
         } else {
-            //  Assume h2
+            // Assume we are using H2
             String URLString = "jdbc:h2:mem:testdb";
-            String driverClass = "org.h2.driver";
-            String dbUser = "sa";
-            String dbPassword = "";
+            String DriverClass = "org.h2.Driver";
+            String DBUser = "sa";
+            String DBpass = "";
+
             return DataSourceBuilder.create()
-                    .username(dbUser)
-                    .password(dbPassword)
+                    .username(DBUser)
+                    .password(DBpass)
                     .url(URLString)
-                    .driverClassName(driverClass)
+                    .driverClassName(DriverClass)
                     .build();
         }
     }
